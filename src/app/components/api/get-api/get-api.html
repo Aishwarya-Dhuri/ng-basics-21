@@ -1,0 +1,73 @@
+ 
+<div class="row">
+    <div class="col-md-6">
+         <button class="btn btn-primary mb-3" (click)="fetchUsers()">Fetch Users</button>
+        <button class="btn btn-secondary mb-3 ms-2" (click)="fetchProducts()">Fetch Products</button>
+    </div>
+    <div class="col-md-6">
+        <select class="form-select"  >
+             @for (product of productsList(); track product.id) {
+                <option [value]="product.product_id">{{ product.name }}</option>
+            }
+           
+        </select>
+           
+    </div>
+</div>
+
+@if(userList().length > 0) {
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Sr No</th>
+      <th>Name</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>City</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (user of userList(); track user.id) {
+    <tr>
+      <td>{{ user.id }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.username }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.phone }}</td>
+      <td>{{ user.address.city }}</td>
+    </tr>
+    }
+  </tbody>
+</table>
+}
+
+
+<!-- <table class="table table-bordered mt-5">
+  <thead>
+    <tr>
+      <th>Sr No</th>
+      <th>Prouct Name</th>
+      <th>Prouct Unit</th>
+      <th>Prouct Price</th>
+      <th>Prouct Category</th>
+      <th>Rating</th>
+    </tr>
+
+  </thead>
+
+  <tbody>
+    @for (product of productsList(); track product.id) {
+    <tr>
+      <td>{{ product.product_id }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.unit }}</td>
+      <td>{{ product.price }}</td>
+      <td>{{ product.category }}</td>
+      <td>{{ product.rating }}</td>
+    </tr>
+    }
+  </tbody>
+     
+ 
+</table> -->

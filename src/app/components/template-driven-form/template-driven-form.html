@@ -1,0 +1,94 @@
+<form class="container mt-4" #formData="ngForm">
+  <div class="card">
+    <div class="card-header">
+      <h5 class="card-title">Template Driven User Registration Form</h5>
+      <p class="card-text">Please fill in the details below to register.</p>
+    </div>
+
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label for="name" class="form-label">Id</label>
+          <input
+            type="text"
+            class="form-control"
+            id="id"
+            name="id"
+            [(ngModel)]="userObj.id"
+            placeholder="Enter your name"
+          />
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input #name="ngModel"
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            [(ngModel)]="userObj.name"
+            required="true" minlength="5"
+            placeholder="Enter your name"
+          />
+          @if(name.dirty || name.touched){
+            @if(name.errors?.['required']){
+                <span class="text-danger">Name is required.</span>
+            }@else if(name.errors?.['minlength']){
+                <span class="text-danger">Name must be at least 5 characters long.</span>
+            }
+          }
+          
+          
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input #username="ngModel"
+            type="text"
+            class="form-control"
+            id="username"
+            name="username"
+            [(ngModel)]="userObj.username"
+            placeholder="Enter your username"
+          />
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input #email="ngModel"
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            [(ngModel)]="userObj.email"
+            placeholder="Enter your email"
+          />
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input #password="ngModel"
+            type="password" 
+            class="form-control"
+            name="password"
+            id="password"
+            [(ngModel)]="userObj.password"
+            placeholder="Enter your password"
+          />
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="phone" class="form-label">Phone</label>
+          <input #phone="ngModel"
+            type="tel"
+            class="form-control"
+            id="phone"
+            name="phone"
+            [(ngModel)]="userObj.phone"
+            placeholder="Enter your phone number"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <button type="submit" class="btn btn-primary" [disabled]="formData.invalid">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

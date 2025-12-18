@@ -1,0 +1,74 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      <h5 class="card-title">Reactive Form</h5>
+      <p class="card-text">Please fill in the details below to register.</p>
+    </div>
+
+    <div class="card-body">
+      <form [formGroup]="userForm">
+        <div class="row">
+         
+          <div class="col-md-4 mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name" formControlName="name"
+              placeholder="Enter your name"
+            />
+            @if(userForm.controls['name'].touched && userForm.controls['name'].dirty){
+             @if(userForm.controls['name'].errors?.['required']){
+                <span class="text-danger">Name is required.</span>
+                }@else if(userForm.controls['name'].errors?.['minlength']){
+                <span class="text-danger">Name must be at least 5 characters long.</span>
+            }
+          }
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              formControlName="username"
+              placeholder="Enter your username"
+            />
+            @if(userForm.controls['username'].touched && userForm.controls['username'].dirty){
+             @if(userForm.controls['username'].errors?.['required']){
+                <span class="text-danger">Username is required.</span>
+            }
+          
+          }
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+               formControlName="email"
+              placeholder="Enter your email"
+            />
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              formControlName="password"
+              id="password"
+              placeholder="Enter your password"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <button type="submit" class="btn btn-primary"  [disabled]="userForm.invalid">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

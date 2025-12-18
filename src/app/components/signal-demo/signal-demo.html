@@ -1,0 +1,32 @@
+ <div class="row">
+    <div class="col-md-3">
+        Student Name: {{ studentObj().name }}
+    </div>
+ </div>
+ 
+<div class="row">
+    <div class="col-md-3">
+        Cousre Name: {{ courseName() }}
+    </div>
+     <div class="col-md-3">
+        Cousre Fees: {{ courseFee() }}
+    </div>
+     <div class="col-md-3">
+        Cousre Duration: {{ couseDuration() }}
+    </div>
+    
+</div>
+
+<div class="row mt-3">
+    <div class="col-md-12">
+      <button class="btn btn-primary" (click)="updateCourseDetails()">Update Course Details</button>
+    </div>
+    
+</div>
+
+<div class="row mt-3">
+    <div class="col-md-12">
+       City List: {{ cityList() }}
+    </div>
+    
+</div>
