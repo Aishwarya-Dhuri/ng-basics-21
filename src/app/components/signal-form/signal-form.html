@@ -1,0 +1,22 @@
+
+<div class="row">
+    <div class="col-3">
+        <input type="text" class="form-control" placeholder="Email" [field]="loginForm.email">
+       @for(item of loginForm.email().errors();track $index){
+            <div class="text-danger" >
+                {{ item.message}}
+            </div>
+        }
+    </div>
+    <div class="col-3">
+        <input type="text" class="form-control" placeholder="Password" [field]="loginForm.password">
+    </div>
+    <div class="col-3">
+        <button class="btn btn-primary" [disabled]="loginForm().invalid()" (click)="onSubmit()">Login</button> 
+    </div>  
+</div>
+<div class="row">
+    <div class="col-12 mt-3">
+        {{ loginForm().value()| json }}
+    </div>
+</div>
