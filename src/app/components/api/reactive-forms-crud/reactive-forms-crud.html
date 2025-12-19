@@ -1,0 +1,85 @@
+<!--Project Competition API used from https://www.freeprojectapi.com/api.html-->
+
+<div class="row">
+  <div class="col-8">
+    <div class="card">
+      <div class="card-header bg-warning">Competitions</div>
+      <div class="card-body">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <!-- <th>Description</th> -->
+               <th>Start Date</th>
+              <th>End Date</th>
+              <!-- <th>Status</th> -->
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(competition of competitionList(); track $index){
+              <tr>
+                <td>{{ $index+1 }}</td>
+                <td>{{ competition.title }}</td>
+                <!-- <td>{{ competition.description }}</td> -->
+                <td>{{ competition.startDate }}</td>
+                <td>{{ competition.endDate }}</td>
+                <!-- <td>{{ competition.status }}</td> -->
+                <td>
+                  <button class="btn btn-sm btn-primary" (click)="onEditCompetition(competition)"><i class="fas fa-edit"></i></button>
+                  <button class="btn btn-sm btn-danger" (click)="onDeleteCompetition(competition.competitionId)"><i class="fa-solid fa-trash"></i></button>
+                </td>
+              </tr>
+            }
+           
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card">
+      <div class="card-header bg-warning">Add/Edit Competition</div>
+      <div class="card-body">
+        <form [formGroup]="projectForm">
+          <!-- <div class="mb-3">
+            <label for="competitionId" class="form-label">Competition ID</label>
+            <input type="number" class="form-control" id="competitionId" 
+            value="0">
+          </div> -->
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" formControlName="title" value="string">
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" formControlName="description">string</textarea>
+          </div>
+          <div class="mb-3">
+            <label for="startDate" class="form-label">Start Date</label>
+            <input type="datetime-local" class="form-control" id="startDate" formControlName="startDate" value="2025-12-19T11:13:44.751">
+          </div>
+          <div class="mb-3">
+            <label for="endDate" class="form-label">End Date</label>
+            <input type="datetime-local" class="form-control" id="endDate" formControlName="endDate" value="2025-12-19T11:13:44.751">
+          </div>
+          <div class="mb-3">
+            <label for="status" class="form-label">Status</label>
+            <input type="text" class="form-control" id="status" formControlName="status" value="string">
+          </div>
+           
+          @if(projectForm.value.competitionId == 0){
+                      <button type="submit" class="btn btn-success" (click)="saveCompetition()">Save</button>
+
+          }@else {
+              <button type="submit" class="btn btn-success" (click)="onUpdateCompetition()">Update</button>
+
+          }
+          <button type="button" class="btn btn-secondary">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,1 +1,77 @@
-<p>post-api works!</p>
+<!--Fees Tracking App : Batches API used from API From https://www.freeprojectapi.com/api.html-->
+
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h5>Batch Management</h5>
+      <span>Template Driven Form CRUD operations</span>
+    </div>
+    <div class="card-body">
+      <h6>Create New Batch</h6>
+      <form class="mb-3">
+        <div class="row">
+          <div class="col-md-4">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Name"
+              [(ngModel)]="newBatchObj.batchName"
+              name="batchName"
+            />
+          </div>
+          <!-- <div class="col-md-4">
+            <input type="text" class="form-control" placeholder="Created Date" 
+            [(ngModel)]="newBatchObj.createdDate" name="createdDate">
+          </div> -->
+          @if(newBatchObj.batchId == 0){
+          <div class="col-md-4">
+            <button type="submit" (click)="onSaveBatch()" class="btn btn-primary">Create</button>
+          </div>
+          }@else{
+          <div class="col-md-4">
+            <button type="submit" (click)="onUpdateBatch()" class="btn btn-primary">Update</button>
+          </div>
+          }
+        </div>
+      </form>
+
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Sr No</th>
+            <th>Batch Name</th>
+            <th>Created Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for( batch of batchList();track $index){
+          <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ batch.batchName }}</td>
+            <td>{{ batch.createdDate }}</td>
+            <td>
+              <button type="button" (click)="onEditBatch(batch)" class="btn btn-sm btn-warning">
+                Edit
+              </button>
+              <button
+                type="button"
+                (click)="onDeleteBatch(batch.batchId)"
+                class="m-1 btn btn-sm btn-danger"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+          }
+       
+          @if(batchList().length === 0){
+          <tr>
+            <td colspan="4" class="text-center">No batches available.</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -4,6 +4,7 @@ import { ReactiveForm } from './components/reactive-form/reactive-form';
 import { SignalDemo } from './components/signal-demo/signal-demo';
 import { GetApi } from './components/api/get-api/get-api';
 import { PostApi } from './components/api/post-api/post-api';
+import { ReactiveFormsCrud } from './components/api/reactive-forms-crud/reactive-forms-crud';
 
 export const routes: Routes = [
     {
@@ -30,6 +31,10 @@ export const routes: Routes = [
      {
         path:'api-calls/post-api',
         component:PostApi
+    },
+     {
+        path:'reactive-forms-crud',
+        component:ReactiveFormsCrud
     }
     
 ];
