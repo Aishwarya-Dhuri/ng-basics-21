@@ -9,6 +9,7 @@ import { SignalForm } from './components/signal-form/signal-form';
 import { Login } from './components/login/login';
 import { Layout } from './components/layout/layout';
 import { authGuard } from './guards/auth-guard';
+import { DependantDropdown } from './components/dependant-dropdown/dependant-dropdown';
 
 export const routes: Routes = [
     {
@@ -53,6 +54,10 @@ export const routes: Routes = [
             {
                 path:'signal-form',
                 component:SignalForm
+            },
+             {
+                path:'dependant-dropdown-demo',
+                component:DependantDropdown
             }
         ]
     }
