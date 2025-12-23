@@ -1,1 +1,178 @@
-<p>dependant-dropdown works!</p>
+<div class="container-fluid">
+  <div class="row">
+    <!-- Form Column (col-4) -->
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header bg-warning">
+          <h5 class="mb-0">Employee Form</h5>
+        </div>
+        <div class="card-body">
+          <form #formData="ngForm">
+            <div class="row">
+            <!-- <div class="mb-3 col-3">
+              <label for="employeeId" class="form-label">Employee ID</label>
+              <input type="number" class="form-control" id="employeeId" placeholder="0" disabled>
+            </div> -->
+            <div class="mb-3 col-3">
+              <label for="fullName" class="form-label">Full Name</label>
+              <input type="text" class="form-control" #FullName="ngModel" name="FullName"[(ngModel)]="newEmployeeObj.fullName" id="fullName" placeholder="Full Name">
+                 @if(FullName.dirty || FullName.touched){
+                        @if(newEmployeeObj.fullName == '') {
+                            <div class="text-danger">Full Name is required.</div>   
+                        }
+                }
+            </div>
+            <div class="mb-3 col-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" #Email="ngModel" name="Email" [(ngModel)]="newEmployeeObj.email" id="email" placeholder="Email">
+                @if(Email.dirty || Email.touched){
+                        @if(newEmployeeObj.email == '') {
+                            <div class="text-danger">Email is required.</div>   
+                        }
+                }
+            </div>
+            <div class="mb-3 col-3">
+              <label for="phone" class="form-label">Phone</label>
+              <input type="tel" class="form-control" #Phone="ngModel" name="Phone" [(ngModel)]="newEmployeeObj.phone" id="phone" placeholder="Phone">
+               @if(Phone.dirty || Phone.touched){
+                        @if(newEmployeeObj.phone == '') {
+                            <div class="text-danger">Phone is required.</div>   
+                        }
+                }
+            </div>
+            <div class="mb-3 col-3">
+              <label for="gender" class="form-label">Gender</label>
+              <select class="form-select" [(ngModel)]="newEmployeeObj.gender" #Gender="ngModel" name="Gender" id="gender">
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+               @if(Gender.dirty || Gender.touched){
+              @if(newEmployeeObj.gender == '') {
+                <div class="text-danger">Gender is required.</div>   
+              }
+            }
+            </div>
+
+            <div class="mb-3 col-3">
+              <label for="dateOfJoining" class="form-label">Date of Joining</label>
+              <input type="date" class="form-control" name="DateOfJoining" #DateOfJoining="ngModel" [(ngModel)]="newEmployeeObj.dateOfJoining" id="dateOfJoining">
+            <!-- @if(DateOfJoining.dirty || DateOfJoining.touched){
+              @if(newEmployeeObj.dateOfJoining == ''    ) {
+                <div class="text-danger">Date of Joining is required.</div>   
+              }
+            } -->
+            </div>
+
+            <div class="mb-3 col-3">
+              <label for="departmentId" class="form-label">Department</label>
+              <select class="form-select" id="departmentId" name="Department" #department="ngModel" 
+                        (change)="getDesignationByDepartmentId()"
+                        [(ngModel)]="newEmployeeObj.departmentId">
+                            @for(dept of departmentList() ; track dept.departmentId) {
+                                <option [value]="dept.departmentId">{{dept.departmentName}}</option>
+                            }
+              </select>
+              @if(department.dirty || department.touched){
+              @if(newEmployeeObj.departmentId == 0) {
+                <div class="text-danger">Department is required.</div>   
+              }
+            }
+            </div>
+            <div class="mb-3 col-3">
+              <label for="designationId" class="form-label">Designation </label>
+               <select class="form-select" name="Designation" [(ngModel)]="newEmployeeObj.designationId" #Designation="ngModel" id="designationId">
+                <option value="0">Select Designation</option>
+                 @for(desig of designationList() ; track desig.designationId) {
+                    <option [value]="desig.designationId">{{desig.designationName}}</option>
+                }
+              </select>
+             @if(Designation.dirty || Designation.touched){
+              @if(newEmployeeObj.designationId == 0) {
+                <div class="text-danger">Designation is required.</div>   
+              }
+            }
+            </div>
+            <div class="mb-3 col-3">
+              <label for="employeeTypeId" class="form-label">Employee Type</label>
+                <select class="form-select" name="EmployeeType" #employeeType="ngModel" [(ngModel)]="newEmployeeObj.employeeType" id="employeeTypeId">
+                    <option value="">Select Employee Type</option>
+                    <option value="Full-time">Full-time</option>
+                    <option value="Part-time">Part-time</option>
+                    <option value="Contract">Contract</option>
+              </select>
+              @if(employeeType.dirty || employeeType.touched){
+              @if(newEmployeeObj.employeeType == '') {
+                <div class="text-danger">Employee Type is required.</div>   
+              }
+            }
+            </div>
+            <div class="mb-3 col-3">
+              <label for="salary" class="form-label">Salary</label>
+              <input type="number" class="form-control" name="Salary" [(ngModel)]="newEmployeeObj.salary" id="salary" placeholder="0">
+            </div>
+            <div class="mb-3 col-12">
+              <button type="submit" class="btn btn-primary" [disabled]="formData.invalid" (click)="isEdit ? updateEmployee() : createEmployee()">{{ isEdit ? 'Update' : 'Save' }}</button> &nbsp;
+            <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+            </div>
+           
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table Column (col-8) -->
+    <div class="col-12 mt-4">
+      <div class="card">
+        <div class="card-header bg-warning">
+          <h5 class="mb-0">Employee List</h5>
+        </div>
+        <div class="card-body">
+          <table class="table table-bordered table-responsive scroll">
+            <thead>
+              <tr>
+                <!-- <th>ID</th> -->
+                <th>Full Name</th>
+                <th>Email</th>
+                <!-- <th>Phone</th>
+                <th>Gender</th> 
+                <th>Date of Joining</th>-->
+                <th>Department</th>
+                <th>Designation</th>
+                <th>Employee Type</th>
+                <th>Salary</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+             
+                @for(employee of employeeList() ; track employee.employeeId) {
+                    <tr>
+                <!-- <td>1</td> -->
+                <td>{{employee.fullName}}</td>
+                <td>{{employee.email}}</td>
+                <!-- <td>123-456-7890</td>
+                <td>Male</td>
+                <td>2023-01-01</td> -->
+                <td>{{employee.departmentName}}</td>
+                <td>{{employee.designationName}}</td>
+                <td>{{employee.employeeType}}</td>
+                <td>{{employee.salary}}</td>
+                <td>
+                  <button class="btn btn-sm btn-warning" (click)="updateEmployee(employee)">Edit</button> &nbsp;
+                  <button class="btn btn-sm btn-danger" (click)="deleteEmployee(employee.employeeId)">Delete</button>
+                </td>
+              </tr>
+
+                }
+              
+              <!-- Add more rows here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
