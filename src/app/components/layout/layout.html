@@ -1,0 +1,63 @@
+
+<div class="sidebar">
+  <h5 class="text-center mb-4">Ng Basics</h5>
+
+  <ul class="nav flex-column">
+   
+
+    <li class="nav-item">
+      <a class="nav-link" routerLink="signal" routerLinkActive="active">Signal</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" routerLink="template-driven-form" routerLinkActive="active"
+        >Template Driven Form</a
+      >
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" routerLink="reactive-form" routerLinkActive="active">Reactive Form</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" routerLink="signal-form" routerLinkActive="active">Signal Form</a>
+    </li>
+    
+    <li class="nav-item">
+  <a
+    class="nav-link dropdown-toggle"
+    [class.active]="rlaApi.isActive" 
+    data-bs-toggle="collapse"
+    href="#apiMenu"
+    role="button"
+    [attr.aria-expanded]="rlaApi.isActive"
+  >
+    API Calls
+  </a>
+
+  <div 
+    class="collapse" 
+    id="apiMenu" 
+    [class.show]="rlaApi.isActive"
+    routerLinkActive 
+    #rlaApi="routerLinkActive">
+    
+    <ul class="nav flex-column ms-3">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="api-calls/get-api" routerLinkActive="active">GET API</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="api-calls/post-api" routerLinkActive="active">POST Api</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="reactive-forms-crud" routerLinkActive="active">Reactive Forms CRUD</a>
+      </li>
+      
+    </ul>
+  </div>
+</li>
+  </ul>
+</div>
+<div class="content">
+  <router-outlet />
+</div>

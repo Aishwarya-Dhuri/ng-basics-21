@@ -1,0 +1,62 @@
+// Colors
+$sidebar-bg: #0f172a;        // dark navy
+$sidebar-border: #1e293b;
+$sidebar-text: #cbd5e1;
+$sidebar-hover: #1e293b;
+$sidebar-active: #ca45b4;
+
+// Sidebar
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: $sidebar-bg;
+  border-right: 1px solid $sidebar-border;
+  padding: 1rem 0;
+  transition: all 0.3s ease;
+
+  h5 {
+    color: #f8fafc;
+    font-weight: 600;
+    margin-bottom: 2rem;
+  }
+
+  .nav {
+    .nav-item {
+      margin-bottom: 0.25rem;
+    }
+
+    .nav-link {
+      color: $sidebar-text;
+      padding: 0.75rem 1rem;
+     cursor: pointer; 
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: background-color 0.2s ease, color 0.2s ease;
+
+      &:hover {
+        background-color: $sidebar-hover;
+        color: #ffffff;
+        cursor: pointer;
+      }
+
+      &.active {
+        background-color: $sidebar-active;
+        color: #ffffff;
+        font-weight: 500;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.content {
+  margin-left: 250px;
+  padding: 2rem;
+}
+.sidebar .nav .nav-item .nav-item .nav-link.active{
+  background-color: #313c56;
+}

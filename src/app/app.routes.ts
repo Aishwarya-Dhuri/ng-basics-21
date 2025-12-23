@@ -6,40 +6,54 @@ import { GetApi } from './components/api/get-api/get-api';
 import { PostApi } from './components/api/post-api/post-api';
 import { ReactiveFormsCrud } from './components/api/reactive-forms-crud/reactive-forms-crud';
 import { SignalForm } from './components/signal-form/signal-form';
+import { Login } from './components/login/login';
+import { Layout } from './components/layout/layout';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
     {
         path:'',
-        redirectTo:'signal',
+        redirectTo:'login',
         pathMatch:'full'
     },
     {
-        path:'signal',
-        component:SignalDemo
+        path:'login',
+        component:Login
     },
     {
-        path:'template-driven-form',
-        component:TemplateDrivenForm
-    },
-    {
-        path:'reactive-form',
-        component:ReactiveForm
-    },
-    {
-        path:'api-calls/get-api',
-        component:GetApi
-    },
-     {
-        path:'api-calls/post-api',
-        component:PostApi
-    },
-     {
-        path:'reactive-forms-crud',
-        component:ReactiveFormsCrud
-    },
-    {
-        path:'signal-form',
-        component:SignalForm
+        path:'',
+        component:Layout,
+        canActivate:[authGuard],
+        children:[
+            {
+                path:'signal',
+                component:SignalDemo,
+            
+            },
+            {
+                path:'template-driven-form',
+                component:TemplateDrivenForm
+            },
+            {
+                path:'reactive-form',
+                component:ReactiveForm
+            },
+            {
+                path:'api-calls/get-api',
+                component:GetApi
+            },
+            {
+                path:'api-calls/post-api',
+                component:PostApi
+            },
+            {
+                path:'reactive-forms-crud',
+                component:ReactiveFormsCrud
+            },
+            {
+                path:'signal-form',
+                component:SignalForm
+            }
+        ]
     }
-    
 ];
