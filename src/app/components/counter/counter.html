@@ -1,0 +1,24 @@
+<!-- Counter Example using NGRX -->
+  <div class="row">
+    <div class="col-12 text-center">
+        <h5>Counter Example using NGRX Store</h5>
+    </div>
+  </div>
+ <div class="row mt-4 " >
+    <div class="card">
+        <div class="card-body">
+            <div class="row text-center align-items-center justify-content-center">
+                <div class="col-3">
+        <button (click)="decrement()" class="btn btn-danger">Decrement</button>
+    </div>
+    <div class="col-2">
+        {{ counterValue | async }}
+    </div>
+    <div class="col-3">
+         <button (click)="increment()" class="btn btn-primary">Increment</button>
+    </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

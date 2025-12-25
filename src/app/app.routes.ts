@@ -10,6 +10,7 @@ import { Login } from './components/login/login';
 import { Layout } from './components/layout/layout';
 import { authGuard } from './guards/auth-guard';
 import { DependantDropdown } from './components/dependant-dropdown/dependant-dropdown';
+import { Counter } from './components/counter/counter';
 
 export const routes: Routes = [
     {
@@ -58,6 +59,10 @@ export const routes: Routes = [
              {
                 path:'dependant-dropdown-demo',
                 component:DependantDropdown
+            },
+             {
+                path:'counter-ngrx',
+                component:Counter
             }
         ]
     }
