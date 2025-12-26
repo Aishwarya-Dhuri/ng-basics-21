@@ -1,0 +1,71 @@
+<div class="container mt-5 todo-card">
+
+    <!-- Title -->
+    <h2 class="text-center mb-4">🌸 TODO App 🌸</h2>
+
+    <!-- Add Task (CREATE) -->
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Add new task" [(ngModel)]="newTask"
+            (keyup.enter)="addTask()" />
+        <button class="btn btn-pink" (click)="addTask()">Add</button>
+    </div>
+
+    <!-- Task List (READ) -->
+    <ul class="list-group">
+
+        @for (todo of todoService.todos(); track todo.id) {
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+
+            <!-- Left side -->
+            <div class="flex-grow-1 d-flex align-items-center">
+                <!-- Toggle Complete (UPDATE) -->
+                <input type="checkbox" class="form-check-input me-2" [checked]="todo.completed"
+                    (change)="toggle(todo)" />
+
+                <!-- View Mode -->
+                @if (editingId !== todo.id) {
+                <span [class.completed]="todo.completed">
+                    {{ todo.title }}
+                </span>
+                }
+
+                <!-- Edit Mode (UPDATE) -->
+                @if (editingId === todo.id) {
+                <input type="text" class="form-control ms-2" [(ngModel)]="editTitle" />
+                }
+            </div>
+
+            <!-- Right side buttons -->
+            <div class="btn-group btn-group-sm">
+
+                <!-- Edit -->
+                @if (editingId !== todo.id) {
+                <button class="btn btn-outline-primary" (click)="startEdit(todo)">
+                    ✏️
+                </button>
+                }
+
+                <!-- Save + Cancel -->
+                @if (editingId === todo.id) {
+                <button class="btn btn-outline-success" (click)="saveEdit(todo)">
+                    ✔
+                </button>
+
+                <button class="btn btn-outline-secondary" (click)="cancelEdit()">
+                    ✖
+                </button>
+                }
+
+                <!-- Delete -->
+                <button class="btn btn-outline-danger" (click)="delete(todo.id)">
+                    🗑
+                </button>
+
+            </div>
+
+        </li>
+        }
+
+    </ul>
+
+</div>

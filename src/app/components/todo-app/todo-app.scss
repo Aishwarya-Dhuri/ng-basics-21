@@ -1,0 +1,51 @@
+$primary-pink: #ff69b4;
+$light-pink: #ffe4f0;
+
+
+.todo-card {
+max-width: 520px;
+background: $light-pink;
+padding: 22px;
+border-radius: 18px;
+box-shadow: 0 10px 24px rgba(255, 105, 180, 0.25);
+}
+
+
+h2 {
+color: $primary-pink;
+font-weight: bold;
+}
+
+
+.bg-pink {
+background-color: $primary-pink !important;
+}
+
+
+.btn-pink {
+background-color: $primary-pink;
+color: white;
+
+
+&:hover {
+background-color: darken($primary-pink, 8%);
+}
+}
+
+
+.completed {
+text-decoration: line-through;
+color: gray;
+}
+
+
+.list-group-item {
+border-radius: 12px;
+margin-bottom: 10px;
+}
+
+
+.stats .badge {
+margin: 0 4px;
+padding: 8px 12px;
+}

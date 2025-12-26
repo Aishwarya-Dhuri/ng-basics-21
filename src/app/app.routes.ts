@@ -11,6 +11,7 @@ import { Layout } from './components/layout/layout';
 import { authGuard } from './guards/auth-guard';
 import { DependantDropdown } from './components/dependant-dropdown/dependant-dropdown';
 import { Counter } from './components/counter/counter';
+import { TodoApp } from './components/todo-app/todo-app';
 
 export const routes: Routes = [
     {
@@ -63,6 +64,10 @@ export const routes: Routes = [
              {
                 path:'counter-ngrx',
                 component:Counter
+            },
+            {
+                path:'todo-app',
+                component:TodoApp
             }
         ]
     }
